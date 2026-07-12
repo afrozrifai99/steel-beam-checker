@@ -7,12 +7,12 @@ from section_diagram import plot_section
 
 st.set_page_config(page_title="Steel Beam Checker", layout="centered")
 
-# --- Hide Streamlit Branding & Fork Toolbars ---
+# --- Hide Streamlit Branding & Fork Toolbars (Keeps Sidebar Toggle Safe!) ---
 st.markdown(
     """
     <style>
-    /* Hides the main menu hamburger icon and the top-right GitHub/Fork toolbar */
-    #MainMenu, [data-testid="stToolbar"], .stAppDeployButton, [data-testid="stHeader"] {
+    /* Hides only the deployment and developer buttons, leaving the header container intact for the sidebar */
+    .stAppDeployButton, #MainMenu, [data-testid="stToolbar"] {
         display: none !important;
         visibility: hidden !important;
     }
