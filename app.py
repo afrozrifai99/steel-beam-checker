@@ -7,24 +7,6 @@ from section_diagram import plot_section
 
 st.set_page_config(page_title="Steel Beam Checker", layout="centered")
 
-# --- Hide GitHub Fork & Cloud Deploy Toolbars Only ---
-st.markdown(
-    """
-    <style>
-    /* Hides the top-right developer toolbar and deployment buttons */
-    .stAppDeployButton, [data-testid="stToolbar"] {
-        display: none !important;
-        visibility: hidden !important;
-    }
-    /* Safely removes the hosting toolbar area containing the fork icon */
-    [data-testid="stHeader"] > div:first-child > div:first-child {
-        display: none !important;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
 # --- Top-Left Author Badge (No Flash / Clean Layout) ---
 st.markdown(
     """
