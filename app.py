@@ -7,39 +7,25 @@ from section_diagram import plot_section
 
 st.set_page_config(page_title="Steel Beam Checker", layout="centered")
 
+# --- Top-Left Author Badge (No Flash / Clean Layout) ---
+st.markdown(
+    """
+    <div style="font-family: monospace; font-size: 1rem; margin-bottom: -10px;">
+        <span style="color: #00fff2; font-weight: bold;">Afroz Rifai</span>
+        <span style="color: #666;"> · </span>
+        <a href="https://www.linkedin.com/in/afroz-rifai-4b872a2b4" target="_blank" style="color: #00fff2; text-decoration: none;">🔗 LinkedIn Profile</a>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
 st.title("Steel Beam Design Checker")
 st.caption("Simply supported UB beam under UDL — AS 4100 / AS 1170.0")
 
 st.write("1) Enter beam and loading conditions.")
 st.write("2) Click the button below to find the lightest universal beam that passes the flexure, shear and serviceability checks based on the conditions provided.")
 
-st.markdown(
-    """
-    <style>
-    .author-badge {
-        position: fixed;
-        top: 1.17rem;
-        bottom: 0.8rem;
-        right: 8.2rem;
-        font-family: monospace;
-        color: #00fff2;
-        font-size: 1rem;
-        z-index: 1000000;
-    }
-    .author-badge a {
-        color: #00fff2;
-        text-decoration: none;
-    }
-    .author-badge a:hover {
-        text-decoration: underline;
-    }
-    </style>
-    <div class="author-badge">
-        Afroz Rifai · <a href="https://www.linkedin.com/in/afroz-rifai-4b872a2b4" target="_blank">LinkedIn</a>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
+st.divider()
 
 # --- Load section + design data once, cached across reruns ---
 @st.cache_data
@@ -48,11 +34,12 @@ def get_beams():
 
 beams = get_beams()
 
-# --- Sidebar: mode selector ---
-mode = st.sidebar.radio(
-    "What do you want to do?",
-    ["Suggest the lightest section", "Check a specific section"],
-)
+# --- Sidebar Configuration ---
+with st.sidebar:
+    mode = st.sidebar.radio(
+        "What do you want to do?",
+        ["Suggest the lightest section", "Check a specific section"],
+    )
 
 # --- Shared inputs: span and loading ---
 
@@ -81,7 +68,7 @@ with col1:
 with col2:
     Q = st.number_input("Live load, Q (kN/m)", min_value=0.0, value=8.0, step=0.5)
     defl_ratio = st.selectbox("Deflection limit", [250, 300, 360],
-                               format_func=lambda x: f"Span / {x}")
+                              format_func=lambda x: f"Span / {x}")
 
 # AS 1170.0 basic ULS combination for permanent + imposed action
 w_star = 1.2 * G + 1.5 * Q       # factored design load, kN/m
@@ -136,7 +123,7 @@ else:
 
     if st.button("Check this section", type="primary"):
         result = check_section(row, row, M_star, V_star, w_service, L,
-                                defl_limit_ratio=defl_ratio)
+                               defl_limit_ratio=defl_ratio)
 
         if result["passes"]:
             st.success(f"**PASS** — {designation} ({result['mass_kg_m']} kg/m)")
@@ -161,4 +148,3 @@ else:
             st.json(result["shear"])
             st.write("**Deflection**")
             st.json(result["deflection"])
-
