@@ -32,7 +32,7 @@ st.markdown(
     <div style="font-family: monospace; font-size: 1rem; margin-bottom: -10px;">
         <span style="color: #ffffff; font-weight: bold;">Afroz Rifai</span>
         <span style="color: #666;"> · </span>
-        <a href="https://www.linkedin.com/in/afroz-rifai-4b872a2b4" target="_blank" style="color: #00fff2; text-decoration: none;">LinkedIn Profile</a>
+        <a href="https://www.linkedin.com/in/afroz-rifai-4b872a2b4" target="_blank" style="color: #00fff2; text-decoration: none;">🔗 LinkedIn Profile</a>
     </div>
     """,
     unsafe_allow_html=True
