@@ -7,13 +7,32 @@ from section_diagram import plot_section
 
 st.set_page_config(page_title="Steel Beam Checker", layout="centered")
 
+# --- Hide Streamlit Branding & Fork Toolbars ---
+st.markdown(
+    """
+    <style>
+    /* Hides the main menu hamburger icon and the top-right GitHub/Fork toolbar */
+    #MainMenu, [data-testid="stToolbar"], .stAppDeployButton, [data-testid="stHeader"] {
+        display: none !important;
+        visibility: hidden !important;
+    }
+    /* Hides the default "Made with Streamlit" footer at the bottom */
+    footer {
+        display: none !important;
+        visibility: hidden !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # --- Top-Left Author Badge (No Flash / Clean Layout) ---
 st.markdown(
     """
     <div style="font-family: monospace; font-size: 1rem; margin-bottom: -10px;">
-        <span style="color: #00fff2; font-weight: bold;">Afroz Rifai</span>
+        <span style="color: #ffffff; font-weight: bold;">Afroz Rifai</span>
         <span style="color: #666;"> · </span>
-        <a href="https://www.linkedin.com/in/afroz-rifai-4b872a2b4" target="_blank" style="color: #00fff2; text-decoration: none;">🔗 LinkedIn Profile</a>
+        <a href="https://www.linkedin.com/in/afroz-rifai-4b872a2b4" target="_blank" style="color: #00fff2; text-decoration: none;">LinkedIn Profile</a>
     </div>
     """,
     unsafe_allow_html=True
